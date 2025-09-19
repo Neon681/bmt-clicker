@@ -161,6 +161,14 @@ class Game {
             }
         });
         
+        // Tab switching functionality
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.dataset.tab;
+                this.switchTab(tabId);
+            });
+        });
+        
         // Click effects on monster
         const monsterImage = document.querySelector('.monster-image');
         if (monsterImage) {
@@ -168,6 +176,16 @@ class Game {
                 this.attackMonster();
             });
         }
+    }
+    
+    switchTab(tabId) {
+        // Remove active class from all tabs and content
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        
+        // Add active class to clicked tab and corresponding content
+        document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+        document.getElementById(`${tabId}-tab`).classList.add('active');
     }
     
     initializeZones() {

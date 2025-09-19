@@ -39,194 +39,212 @@
         </div>
     </header>
 
-    <div class="game-container">
-        <!-- Main Combat Area -->
-        <div class="combat-section">
-            <div class="zone-display">
-                <div class="zone-info">
-                    <h2 class="zone-name" id="zone-name">Lumbridge</h2>
-                    <div class="zone-progress">
-                        Zone <span id="zone">1</span> - Monster <span id="monster-count">1</span>/10
+    <div class="game-layout">
+        <!-- Left Sidebar with Tabs -->
+        <div class="left-sidebar">
+            <div class="sidebar-tabs">
+                <button class="tab-btn active" data-tab="upgrades">⚡ Upgrades</button>
+                <button class="tab-btn" data-tab="stats">📊 Stats</button>
+                <button class="tab-btn" data-tab="prestige">⭐ Prestige</button>
+                <button class="tab-btn" data-tab="challenges">📅 Challenges</button>
+                <button class="tab-btn" data-tab="equipment">⚔️ Equipment</button>
+                <button class="tab-btn" data-tab="achievements">🏅 Achievements</button>
+            </div>
+            
+            <div class="sidebar-content">
+                <!-- Upgrades Tab -->
+                <div class="tab-content active" id="upgrades-tab">
+                    <div class="tab-header">
+                        <h2>⚡ Upgrades</h2>
+                        <div class="upgrade-points">
+                            Upgrade Points: <span id="upgrade-points">0</span>
+                        </div>
+                    </div>
+                    <div class="upgrades-grid" id="upgrades-list">
+                        <!-- Upgrades will be dynamically generated -->
+                    </div>
+                </div>
+
+                <!-- Statistics Tab -->
+                <div class="tab-content" id="stats-tab">
+                    <div class="tab-header">
+                        <h2>📊 Statistics</h2>
+                        <div class="stats-summary">
+                            Total Playtime: <span id="total-playtime">0m</span>
+                        </div>
+                    </div>
+                    <div class="statistics-grid" id="statistics-list">
+                        <!-- Statistics will be dynamically generated -->
+                    </div>
+                </div>
+
+                <!-- Prestige Tab -->
+                <div class="tab-content" id="prestige-tab">
+                    <div class="tab-header">
+                        <h2>⭐ Prestige Shop</h2>
+                        <div class="prestige-points">
+                            Prestige Points: <span id="prestige-points">0</span>
+                        </div>
+                    </div>
+                    <div class="prestige-grid" id="prestige-list">
+                        <!-- Prestige upgrades will be dynamically generated -->
+                    </div>
+                </div>
+
+                <!-- Challenges Tab -->
+                <div class="tab-content" id="challenges-tab">
+                    <div class="tab-header">
+                        <h2>📅 Daily Challenges</h2>
+                        <div class="challenges-timer">
+                            <span id="challenges-timer">Resets in: 24h</span>
+                        </div>
+                    </div>
+                    <div class="challenges-info">
+                        <p>Complete daily challenges for bonus rewards! Challenges reset every 24 hours.</p>
+                    </div>
+                    <div class="challenges-grid" id="challenges-grid">
+                        <!-- Daily challenges will be dynamically generated -->
+                    </div>
+                </div>
+
+                <!-- Equipment Tab -->
+                <div class="tab-content" id="equipment-tab">
+                    <div class="tab-header">
+                        <h2>⚔️ Equipment</h2>
+                        <div class="equipment-stats">
+                            <span id="equipment-count-display">0</span>/3 Equipped
+                        </div>
+                    </div>
+                    <div class="equipment-info">
+                        <p>Equip powerful items found from monster drops to boost your stats!</p>
+                    </div>
+                    
+                    <!-- Currently Equipped -->
+                    <div class="equipped-items">
+                        <h3>Currently Equipped</h3>
+                        <div class="equipment-slots">
+                            <div class="equipment-slot" id="weapon-slot">
+                                <div class="slot-icon">⚔️</div>
+                                <div class="slot-name">Weapon</div>
+                                <div class="slot-item" id="equipped-weapon">None</div>
+                            </div>
+                            <div class="equipment-slot" id="armor-slot">
+                                <div class="slot-icon">🛡️</div>
+                                <div class="slot-name">Armor</div>
+                                <div class="slot-item" id="equipped-armor">None</div>
+                            </div>
+                            <div class="equipment-slot" id="accessory-slot">
+                                <div class="slot-icon">💍</div>
+                                <div class="slot-name">Accessory</div>
+                                <div class="slot-item" id="equipped-accessory">None</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Inventory -->
+                    <div class="inventory-section">
+                        <h3>Inventory</h3>
+                        <div class="inventory-grid" id="inventory-grid">
+                            <!-- Inventory items will be dynamically generated -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievements Tab -->
+                <div class="tab-content" id="achievements-tab">
+                    <div class="tab-header">
+                        <h2>🏅 Achievements</h2>
+                        <div class="achievement-progress">
+                            <span id="achievements-unlocked">0</span> / <span id="total-achievements">23</span>
+                        </div>
+                    </div>
+                    <div class="achievements-grid" id="achievements-list">
+                        <!-- Achievements will be dynamically generated -->
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="monster-area">
-                <div class="monster-container">
-                    <div class="monster-sprite" id="monster-sprite">
-                        <div class="monster-image">🐺</div>
-                        <div class="damage-numbers" id="damage-numbers"></div>
+        <!-- Main Combat Area -->
+        <div class="main-content">
+            <div class="combat-section">
+                <div class="zone-display">
+                    <div class="zone-info">
+                        <h2 class="zone-name" id="zone-name">Lumbridge</h2>
+                        <div class="zone-progress">
+                            Zone <span id="zone">1</span> - Monster <span id="monster-count">1</span>/10
+                        </div>
                     </div>
-                    <div class="monster-info">
-                        <h3 class="monster-name" id="monster-name">Goblin</h3>
-                        <div class="hp-container">
-                            <div class="hp-bar-bg">
-                                <div class="hp-bar-fill" id="hp-bar"></div>
-                                <div class="hp-text">
-                                    <span id="monster-current-hp">10</span> / <span id="monster-max-hp">10</span>
+                </div>
+
+                <div class="monster-area">
+                    <div class="monster-container">
+                        <div class="monster-sprite" id="monster-sprite">
+                            <div class="monster-image">🐺</div>
+                            <div class="damage-numbers" id="damage-numbers"></div>
+                        </div>
+                        <div class="monster-info">
+                            <h3 class="monster-name" id="monster-name">Goblin</h3>
+                            <div class="hp-container">
+                                <div class="hp-bar-bg">
+                                    <div class="hp-bar-fill" id="hp-bar"></div>
+                                    <div class="hp-text">
+                                        <span id="monster-current-hp">10</span> / <span id="monster-max-hp">10</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="combat-controls">
-                    <button class="attack-button" id="attack-btn" onclick="attackMonster()">
-                        <span class="btn-text">⚔️ ATTACK</span>
-                        <div class="btn-effect"></div>
-                    </button>
                     
-                    <!-- Active Skills Bar -->
-                    <div class="active-skills">
-                    <div class="skills-header">
-                        <span>⚡ Active Skills</span>
-                        <div class="hotkey-hint">Press Q, W, E, R, T to use skills</div>
-                    </div>
-                        <div class="skills-grid" id="skills-grid">
-                            <!-- Skills will be dynamically generated -->
+                    <div class="combat-controls">
+                        <button class="attack-button" id="attack-btn" onclick="attackMonster()">
+                            <span class="btn-text">⚔️ ATTACK</span>
+                            <div class="btn-effect"></div>
+                        </button>
+                        
+                        <!-- Active Skills Bar -->
+                        <div class="active-skills">
+                        <div class="skills-header">
+                            <span>⚡ Active Skills</span>
+                            <div class="hotkey-hint">Press Q, W, E, R, T to use skills</div>
+                        </div>
+                            <div class="skills-grid" id="skills-grid">
+                                <!-- Skills will be dynamically generated -->
+                            </div>
+                        </div>
+                        
+                        <div class="combat-stats">
+                            <div class="stat-box">
+                                <div class="stat-label">Click Damage</div>
+                                <div class="stat-value" id="click-damage">1</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-label">DPS</div>
+                                <div class="stat-value" id="dps">0</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-label">Kills</div>
+                                <div class="stat-value" id="monsters-killed">0</div>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="combat-stats">
-                        <div class="stat-box">
-                            <div class="stat-label">Click Damage</div>
-                            <div class="stat-value" id="click-damage">1</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-label">DPS</div>
-                            <div class="stat-value" id="dps">0</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-label">Kills</div>
-                            <div class="stat-value" id="monsters-killed">0</div>
-                        </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar - Heroes -->
+        <div class="right-sidebar">
+            <div class="heroes-section">
+                <div class="section-header">
+                    <h2>🏆 Heroes</h2>
+                    <div class="heroes-summary">
+                        <span id="heroes-owned">0</span> Heroes | 
+                        <span id="total-hero-dps">0</span> Total DPS
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Heroes Section -->
-        <div class="heroes-section">
-            <div class="section-header">
-                <h2>🏆 Heroes</h2>
-                <div class="heroes-summary">
-                    <span id="heroes-owned">0</span> Heroes | 
-                    <span id="total-hero-dps">0</span> Total DPS
+                <div class="heroes-container" id="heroes-list">
+                    <!-- Heroes will be dynamically generated -->
                 </div>
-            </div>
-            <div class="heroes-container" id="heroes-list">
-                <!-- Heroes will be dynamically generated -->
-            </div>
-        </div>
-
-        <!-- Upgrades Section -->
-        <div class="upgrades-section">
-            <div class="section-header">
-                <h2>⚡ Upgrades</h2>
-                <div class="upgrade-points">
-                    Upgrade Points: <span id="upgrade-points">0</span>
-                </div>
-            </div>
-            <div class="upgrades-grid" id="upgrades-list">
-                <!-- Upgrades will be dynamically generated -->
-            </div>
-        </div>
-
-        <!-- Statistics Section -->
-        <div class="statistics-section">
-            <div class="section-header">
-                <h2>📊 Statistics</h2>
-                <div class="stats-summary">
-                    Total Playtime: <span id="total-playtime">0m</span>
-                </div>
-            </div>
-            <div class="statistics-grid" id="statistics-list">
-                <!-- Statistics will be dynamically generated -->
-            </div>
-        </div>
-
-        <!-- Prestige Section -->
-        <div class="prestige-section">
-            <div class="section-header">
-                <h2>⭐ Prestige Shop</h2>
-                <div class="prestige-points">
-                    Prestige Points: <span id="prestige-points">0</span>
-                </div>
-            </div>
-            <div class="prestige-grid" id="prestige-list">
-                <!-- Prestige upgrades will be dynamically generated -->
-            </div>
-        </div>
-
-        <!-- Daily Challenges Section -->
-        <div class="challenges-section">
-            <div class="section-header">
-                <h2>📅 Daily Challenges</h2>
-                <div class="challenges-timer">
-                    <span id="challenges-timer">Resets in: 24h</span>
-                </div>
-            </div>
-            <div class="challenges-info">
-                <p>Complete daily challenges for bonus rewards! Challenges reset every 24 hours.</p>
-            </div>
-            <div class="challenges-grid" id="challenges-grid">
-                <!-- Daily challenges will be dynamically generated -->
-            </div>
-        </div>
-
-        <!-- Equipment Section -->
-        <div class="equipment-section">
-            <div class="section-header">
-                <h2>⚔️ Equipment</h2>
-                <div class="equipment-stats">
-                    <span id="equipment-count-display">0</span>/3 Equipped
-                </div>
-            </div>
-            <div class="equipment-info">
-                <p>Equip powerful items found from monster drops to boost your stats!</p>
-            </div>
-            
-            <!-- Currently Equipped -->
-            <div class="equipped-items">
-                <h3>Currently Equipped</h3>
-                <div class="equipment-slots">
-                    <div class="equipment-slot" id="weapon-slot">
-                        <div class="slot-icon">⚔️</div>
-                        <div class="slot-name">Weapon</div>
-                        <div class="slot-item" id="equipped-weapon">None</div>
-                    </div>
-                    <div class="equipment-slot" id="armor-slot">
-                        <div class="slot-icon">🛡️</div>
-                        <div class="slot-name">Armor</div>
-                        <div class="slot-item" id="equipped-armor">None</div>
-                    </div>
-                    <div class="equipment-slot" id="accessory-slot">
-                        <div class="slot-icon">💍</div>
-                        <div class="slot-name">Accessory</div>
-                        <div class="slot-item" id="equipped-accessory">None</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Inventory -->
-            <div class="inventory-section">
-                <h3>Inventory</h3>
-                <div class="inventory-grid" id="inventory-grid">
-                    <!-- Inventory items will be dynamically generated -->
-                </div>
-            </div>
-        </div>
-
-        <!-- Achievements Section -->
-        <div class="achievements-section">
-            <div class="section-header">
-                <h2>🏅 Achievements</h2>
-                <div class="achievement-progress">
-                    <span id="achievements-unlocked">0</span> / <span id="total-achievements">23</span>
-                </div>
-            </div>
-            <div class="achievements-grid" id="achievements-list">
-                <!-- Achievements will be dynamically generated -->
             </div>
         </div>
     </div>
